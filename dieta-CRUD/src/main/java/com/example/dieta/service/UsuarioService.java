@@ -11,11 +11,19 @@ import com.example.dieta.usuario.Usuario;
 @Service
 public class UsuarioService {
 
+    private final UsuarioRepository usuarioRepository;
+
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
-    public List<Usuario> listarUsuarios() {
+    public Usuario salvarUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+
+    }
+
+    public List<Usuario>listarUsuarios() {
         return usuarioRepository.findAll();
-
     }
 }
